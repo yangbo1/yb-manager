@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.dao.GprsdetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.yb.pojo.Gprsdetails" >
+    <id column="gprs_id" property="gprsId" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="usegprs" property="usegprs" jdbcType="BIGINT" />
+    <result column="cu_id" property="cuId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    gprs_id, createtime, usegprs, cu_id, name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yb.pojo.GprsdetailsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gprsdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gprsdetails
+    where gprs_id = #{gprsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gprsdetails
+    where gprs_id = #{gprsId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yb.pojo.GprsdetailsExample" >
+    delete from gprsdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yb.pojo.Gprsdetails" >
+    insert into gprsdetails (gprs_id, createtime, usegprs, 
+      cu_id, name)
+    values (#{gprsId,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{usegprs,jdbcType=BIGINT}, 
+      #{cuId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yb.pojo.Gprsdetails" >
+    insert into gprsdetails
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gprsId != null" >
+        gprs_id,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="usegprs != null" >
+        usegprs,
+      </if>
+      <if test="cuId != null" >
+        cu_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gprsId != null" >
+        #{gprsId,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usegprs != null" >
+        #{usegprs,jdbcType=BIGINT},
+      </if>
+      <if test="cuId != null" >
+        #{cuId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yb.pojo.GprsdetailsExample" resultType="java.lang.Integer" >
+    select count(*) from gprsdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update gprsdetails
+    <set >
+      <if test="record.gprsId != null" >
+        gprs_id = #{record.gprsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.usegprs != null" >
+        usegprs = #{record.usegprs,jdbcType=BIGINT},
+      </if>
+      <if test="record.cuId != null" >
+        cu_id = #{record.cuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update gprsdetails
+    set gprs_id = #{record.gprsId,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      usegprs = #{record.usegprs,jdbcType=BIGINT},
+      cu_id = #{record.cuId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yb.pojo.Gprsdetails" >
+    update gprsdetails
+    <set >
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usegprs != null" >
+        usegprs = #{usegprs,jdbcType=BIGINT},
+      </if>
+      <if test="cuId != null" >
+        cu_id = #{cuId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gprs_id = #{gprsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yb.pojo.Gprsdetails" >
+    update gprsdetails
+    set createtime = #{createtime,jdbcType=TIMESTAMP},
+      usegprs = #{usegprs,jdbcType=BIGINT},
+      cu_id = #{cuId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR}
+    where gprs_id = #{gprsId,jdbcType=INTEGER}
+  </update>
+</mapper>
