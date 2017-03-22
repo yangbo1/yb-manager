@@ -23,6 +23,8 @@ public class AdminServiceImpl implements AdminService {
     private MessagedetailsMapper messagedetailsMapper;
     @Autowired
     private BalanceMapper balanceMapper;
+    @Autowired
+    private PostageMapper postageMapper;
 
     @Override
     public List<Customer> getCustomerList() {
@@ -121,5 +123,26 @@ public class AdminServiceImpl implements AdminService {
         balance.setGprs((long)0);
         balanceMapper.insertSelective(balance);
 
+    }
+
+    @Override
+    public List<Postage> getPostageList() {
+        PostageExample example = new PostageExample();
+        return postageMapper.selectByExample(example);
+    }
+
+    @Override
+    public Postage getPostageById(Integer id) {
+        return postageMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void updatePostage(Postage postage) {
+        postageMapper.updateByPrimaryKey(postage);
+    }
+
+    @Override
+    public void deletePostageById(Integer id) {
+        postageMapper.deleteByPrimaryKey(id);
     }
 }

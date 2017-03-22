@@ -1,9 +1,6 @@
 package com.yb.service;
 
-import com.yb.pojo.Calldetails;
-import com.yb.pojo.Customer;
-import com.yb.pojo.Gprsdetails;
-import com.yb.pojo.Messagedetails;
+import com.yb.pojo.*;
 
 import java.util.List;
 
@@ -45,4 +42,12 @@ public interface AdminService {
     void deleteGprsdetailsById(Integer id);
 
     void insertCustomer(Customer customer);
+
+    List<Postage> getPostageList();
+
+    Postage getPostageById(Integer id);
+
+    void updatePostage(Postage postage);
+
+    void deletePostageById(Integer id);
 }

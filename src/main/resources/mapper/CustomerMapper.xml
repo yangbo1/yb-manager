@@ -103,6 +103,9 @@
       tel)
     values (#{custId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{tel,jdbcType=BIGINT})
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="custId">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
   </insert>
   <insert id="insertSelective" parameterType="com.yb.pojo.Customer" >
     insert into customer
@@ -134,6 +137,9 @@
         #{tel,jdbcType=BIGINT},
       </if>
     </trim>
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="custId">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
   </insert>
   <select id="countByExample" parameterType="com.yb.pojo.CustomerExample" resultType="java.lang.Integer" >
     select count(*) from customer

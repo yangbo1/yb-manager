@@ -15,13 +15,13 @@
 <div class="container-wrap">
     <form class="form-horizontal" role="form" action="${yb}/insertCustomer" method="post">
         <%--<input id="id" name="customerId" value="${customer.custId}" hidden="hidden">--%>
-        <div class="form-group">
+        <%--<div class="form-group">
             <label class="col-sm-2 control-label">客户id</label>
 
             <div class="col-sm-5">
                 <input type="text" class="form-control"  id="custId" name="custId">
             </div>
-        </div>
+        </div>--%>
         <div class="form-group">
             <label class="col-sm-2 control-label">客户姓名</label>
 

@@ -1,9 +1,6 @@
 package com.yb.controller;
 
-import com.yb.pojo.Calldetails;
-import com.yb.pojo.Customer;
-import com.yb.pojo.Gprsdetails;
-import com.yb.pojo.Messagedetails;
+import com.yb.pojo.*;
 import com.yb.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -122,5 +119,27 @@ public class AdminController {
     public String insertCustomer(Customer customer){
         adminService.insertCustomer(customer);
         return "listCustomer";
+    }
+    @RequestMapping("/listPostage")
+    public String listPostage(ModelMap model){
+        List<Postage> list = adminService.getPostageList();
+        model.addAttribute("list",list);
+        return "listPostage";
+    }
+    @RequestMapping("update-view-postage")
+    public String getPostageById(@RequestParam("id") Integer id,ModelMap model){
+        Postage postage = adminService.getPostageById(id);
+        model.addAttribute("postage",postage);
+        return "updatePostage";
+    }
+    @RequestMapping(value = "/savePost",method = RequestMethod.POST)
+    public String updatePostage(Postage postage){
+        adminService.updatePostage(postage);
+        return "redirect:listPostage";
+    }
+    @RequestMapping("/deletepostage")
+    public String deletePostageById(@RequestParam("id") Integer id){
+        adminService.deletePostageById(id);
+        return "redirect:listPostage";
     }
 }

@@ -35,7 +35,7 @@
             <label class="col-sm-2 control-label">客户id</label>
 
             <div class="col-sm-5">
-                <input type="text" class="form-control"  id="custId" name="custId" value="${customer.custId}">
+                <input type="text" class="form-control"  id="custId" readonly="readonly" name="custId" value="${customer.custId}">
             </div>
         </div>
         <div class="form-group">

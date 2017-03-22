@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.yb.dao.CustomerMapper" >
-  <resultMap id="BaseResultMap" type="com.yb.pojo.Customer" >
-    <id column="cust_id" property="custId" jdbcType="INTEGER" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="tel" property="tel" jdbcType="BIGINT" />
+<mapper namespace="com.yb.dao.PostageMapper" >
+  <resultMap id="BaseResultMap" type="com.yb.pojo.Postage" >
+    <id column="post_id" property="postId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="callprice" property="callprice" jdbcType="VARCHAR" />
+    <result column="messageprice" property="messageprice" jdbcType="VARCHAR" />
+    <result column="rent" property="rent" jdbcType="REAL" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,15 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    cust_id, username, password, tel
+    post_id, type, callprice, messageprice, rent
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yb.pojo.CustomerExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yb.pojo.PostageExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from customer
+    from postage
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,82 +86,85 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from customer
-    where cust_id = #{custId,jdbcType=INTEGER}
+    from postage
+    where post_id = #{postId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from customer
-    where cust_id = #{custId,jdbcType=INTEGER}
+    delete from postage
+    where post_id = #{postId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.yb.pojo.CustomerExample" >
-    delete from customer
+  <delete id="deleteByExample" parameterType="com.yb.pojo.PostageExample" >
+    delete from postage
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.yb.pojo.Customer" >
-    insert into customer (cust_id, username, password, 
-      tel)
-    values (#{custId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{tel,jdbcType=BIGINT})
-    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="custId">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
+  <insert id="insert" parameterType="com.yb.pojo.Postage" >
+    insert into postage (post_id, type, callprice, 
+      messageprice, rent)
+    values (#{postId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{callprice,jdbcType=VARCHAR}, 
+      #{messageprice,jdbcType=VARCHAR}, #{rent,jdbcType=REAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.yb.pojo.Customer" >
-    insert into customer
+  <insert id="insertSelective" parameterType="com.yb.pojo.Postage" >
+    insert into postage
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="custId != null" >
-        cust_id,
+      <if test="postId != null" >
+        post_id,
       </if>
-      <if test="username != null" >
-        username,
+      <if test="type != null" >
+        type,
       </if>
-      <if test="password != null" >
-        password,
+      <if test="callprice != null" >
+        callprice,
       </if>
-      <if test="tel != null" >
-        tel,
+      <if test="messageprice != null" >
+        messageprice,
+      </if>
+      <if test="rent != null" >
+        rent,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="custId != null" >
-        #{custId,jdbcType=INTEGER},
+      <if test="postId != null" >
+        #{postId,jdbcType=INTEGER},
       </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
+      <if test="callprice != null" >
+        #{callprice,jdbcType=VARCHAR},
       </if>
-      <if test="tel != null" >
-        #{tel,jdbcType=BIGINT},
+      <if test="messageprice != null" >
+        #{messageprice,jdbcType=VARCHAR},
+      </if>
+      <if test="rent != null" >
+        #{rent,jdbcType=REAL},
       </if>
     </trim>
-    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="custId">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
   </insert>
-  <select id="countByExample" parameterType="com.yb.pojo.CustomerExample" resultType="java.lang.Integer" >
-    select count(*) from customer
+  <select id="countByExample" parameterType="com.yb.pojo.PostageExample" resultType="java.lang.Integer" >
+    select count(*) from postage
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update customer
+    update postage
     <set >
-      <if test="record.custId != null" >
-        cust_id = #{record.custId,jdbcType=INTEGER},
+      <if test="record.postId != null" >
+        post_id = #{record.postId,jdbcType=INTEGER},
       </if>
-      <if test="record.username != null" >
-        username = #{record.username,jdbcType=VARCHAR},
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
       </if>
-      <if test="record.password != null" >
-        password = #{record.password,jdbcType=VARCHAR},
+      <if test="record.callprice != null" >
+        callprice = #{record.callprice,jdbcType=VARCHAR},
       </if>
-      <if test="record.tel != null" >
-        tel = #{record.tel,jdbcType=BIGINT},
+      <if test="record.messageprice != null" >
+        messageprice = #{record.messageprice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rent != null" >
+        rent = #{record.rent,jdbcType=REAL},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -168,35 +172,40 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update customer
-    set cust_id = #{record.custId,jdbcType=INTEGER},
-      username = #{record.username,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      tel = #{record.tel,jdbcType=BIGINT}
+    update postage
+    set post_id = #{record.postId,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=VARCHAR},
+      callprice = #{record.callprice,jdbcType=VARCHAR},
+      messageprice = #{record.messageprice,jdbcType=VARCHAR},
+      rent = #{record.rent,jdbcType=REAL}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yb.pojo.Customer" >
-    update customer
+  <update id="updateByPrimaryKeySelective" parameterType="com.yb.pojo.Postage" >
+    update postage
     <set >
-      <if test="username != null" >
-        username = #{username,jdbcType=VARCHAR},
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
+      <if test="callprice != null" >
+        callprice = #{callprice,jdbcType=VARCHAR},
       </if>
-      <if test="tel != null" >
-        tel = #{tel,jdbcType=BIGINT},
+      <if test="messageprice != null" >
+        messageprice = #{messageprice,jdbcType=VARCHAR},
+      </if>
+      <if test="rent != null" >
+        rent = #{rent,jdbcType=REAL},
       </if>
     </set>
-    where cust_id = #{custId,jdbcType=INTEGER}
+    where post_id = #{postId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.yb.pojo.Customer" >
-    update customer
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      tel = #{tel,jdbcType=BIGINT}
-    where cust_id = #{custId,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.yb.pojo.Postage" >
+    update postage
+    set type = #{type,jdbcType=VARCHAR},
+      callprice = #{callprice,jdbcType=VARCHAR},
+      messageprice = #{messageprice,jdbcType=VARCHAR},
+      rent = #{rent,jdbcType=REAL}
+    where post_id = #{postId,jdbcType=INTEGER}
   </update>
 </mapper>
