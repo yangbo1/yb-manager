@@ -26,12 +26,14 @@
     </div>
     <div id="navbar" class="text-center navbar-collapse collapse">
         <ul class="nav navbar-nav">
-            <li><a href="list">所有学生</a></li>
-            <li><a href="add-view">添加学生</a></li>
-            <li><a href="search-view">查询学生</a></li>
+            <li><a href="listCustomer">所有客户</a></li>
+            <li><a href="listCall">通话详单</a></li>
+            <li><a href="listGprs">流量详单</a></li>
+            <li><a href="listMessage">信息详单</a></li>
+            <li><a href="addCustomer">添加客户</a></li>
         </ul>
     </div>
     <!--/.navbar-collapse -->
-</div>--%>
+</div>
 </body>
 </html>

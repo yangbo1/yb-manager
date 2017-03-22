@@ -1,10 +1,12 @@
 package com.yb.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Messagedetails {
     private Integer messId;
-
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createtime;
 
     private Integer quantities;

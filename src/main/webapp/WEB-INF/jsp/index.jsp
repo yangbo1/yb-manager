@@ -5,10 +5,20 @@
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" href="${ctx}/resources/css/index.css">
+    <link rel="stylesheet" href="${yb}/resources/css/index.css">
 </head>
+<%--<script type="text/javascript">
+    function fun() {
+        var type = document.getElementsByName("logtype").value;
+        if (type=="admin" || type=="customer") {
+            document.getElementById("form").action = "/login"
+        } else {
+             alert("请选择登陆类型");
+        }
+    }
+</script>--%>
 <body>
-<form class="form-horizontal" role="form" action="${yb}/login" method="post">
+<form class="form-horizontal" role="form"  action="/login" method="post">
     <div class="form-group">
         <label for="username" class="col-sm-2 control-label">用户名</label>
         <div class="col-sm-10">
@@ -25,7 +35,7 @@
         <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
                 <label>
-                    <input type="radio" name="logtype" id= "admin" value="admin">管理员
+                    <input type="radio" name="logtype" id= "admin" value="admin" checked>管理员
                 </label>
                 <label>
                     <input type="radio" name="logtype" id="customer" value="customer">普通用户
@@ -35,7 +45,7 @@
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">登录</button>
+            <button type="submit" <%--id="submit" onclick="fun()"--%> class="btn btn-default">登录</button>
         </div>
     </div>
 </form>

@@ -10,6 +10,8 @@ import com.yb.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by 杨波 on 2017/3/21.
  */
@@ -25,8 +27,8 @@ public class LoginServiceImpl implements LoginService {
         AdminExample.Criteria criteria1 = example1.createCriteria();
         criteria1.andAdminnameEqualTo(username1);
         criteria1.andAdminpasswordEqualTo(password1);
-        Admin admin = (Admin) adminMapper.selectByExample(example1);
-        if(admin==null){
+        List<Admin> list1 = adminMapper.selectByExample(example1);
+        if(list1.isEmpty()){
             return "error";
         }else {
             return "admin";
@@ -38,8 +40,8 @@ public class LoginServiceImpl implements LoginService {
         CustomerExample.Criteria criteria2 = example2.createCriteria();
         criteria2.andUsernameEqualTo(username2);
         criteria2.andPasswordEqualTo(password2);
-        Customer customer = (Customer) customerMapper.selectByExample(example2);
-        if(customer==null){
+        List<Customer> list2 = customerMapper.selectByExample(example2);
+        if(list2.isEmpty()){
             return "error";
         }else {
             return "user";
@@ -49,12 +51,13 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public String getAdminOrCustomer(String username, String password, String logtype) {
-        if(logtype == "admin"){
+        if("admin".equals(logtype)){
             return getAdmin(username,password);
-        }else if(logtype == "customer"){
+        }else if("customer".equals(logtype)){
             return getCustomer(username, password);
+        }else {
+            return "error";
         }
-        return "error";
     }
 
 }

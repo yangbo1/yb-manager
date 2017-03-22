@@ -1,10 +1,12 @@
 package com.yb.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Calldetails {
     private Integer callId;
-
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createtime;
 
     private Integer time;

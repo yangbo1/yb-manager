@@ -8,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta http-equiv="refresh" content="2;url=index" />
     <title>Title</title>
 </head>
 <body>
-    没有此用户或管理员，请重新登陆
-    <jsp:forward page="index.jsp"/>
+    <h1>密码错误，请重新登陆,2秒后自动返回......</h1>
 </body>
 </html>

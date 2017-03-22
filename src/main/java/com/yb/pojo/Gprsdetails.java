@@ -1,10 +1,13 @@
 package com.yb.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Gprsdetails {
     private Integer gprsId;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createtime;
 
     private Long usegprs;

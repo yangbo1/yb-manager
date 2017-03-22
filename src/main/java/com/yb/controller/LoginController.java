@@ -17,8 +17,9 @@ public class LoginController {
     public String showIndex(){
         return "index";
     }
+
     @RequestMapping("/login")
-    @ResponseBody
+//    @ResponseBody
     public String login(String username, String password, String logtype){
         String result = loginService.getAdminOrCustomer(username,password,logtype);
         return result;
