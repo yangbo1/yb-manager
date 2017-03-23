@@ -60,4 +60,14 @@ public class LoginServiceImpl implements LoginService {
         }
     }
 
+    @Override
+    public Customer getCustomer(String username) {
+        CustomerExample example = new CustomerExample();
+        CustomerExample.Criteria criteria = example.createCriteria();
+        criteria.andUsernameEqualTo(username);
+        List<Customer> list = customerMapper.selectByExample(example);
+        Customer customer = list.get(0);
+        return customer;
+    }
+
 }

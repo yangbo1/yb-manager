@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2017-03-22 22:29:44
+Date: 2017-03-23 18:37:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -53,9 +53,9 @@ CREATE TABLE `balance` (
 -- Records of balance
 -- ----------------------------
 INSERT INTO `balance` VALUES ('2', '32.0', '1000', '2', 'shabi');
-INSERT INTO `balance` VALUES ('3', '100.0', '3000', '3', '杨波');
+INSERT INTO `balance` VALUES ('3', '510.0', '3000', '3', '杨波');
 INSERT INTO `balance` VALUES ('4', '22.0', '321', '4', '杨幂');
-INSERT INTO `balance` VALUES ('5', '434.0', '3213', '5', '范冰冰');
+INSERT INTO `balance` VALUES ('5', '479.0', '3213', '5', '范冰冰');
 INSERT INTO `balance` VALUES ('6', '43.0', '434', '6', '吉泽');
 INSERT INTO `balance` VALUES ('7', '0.0', '0', '7', '东尼');
 INSERT INTO `balance` VALUES ('8', '0.0', '0', '8', '大木');
@@ -76,8 +76,8 @@ CREATE TABLE `calldetails` (
   PRIMARY KEY  (`call_id`),
   KEY `cust_id` (`cust_id`),
   KEY `name1` (`name`),
-  CONSTRAINT `name1` FOREIGN KEY (`name`) REFERENCES `customer` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `cust_id` FOREIGN KEY (`cust_id`) REFERENCES `customer` (`cust_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `cust_id` FOREIGN KEY (`cust_id`) REFERENCES `customer` (`cust_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `name1` FOREIGN KEY (`name`) REFERENCES `customer` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='InnoDB free: 8192 kB; (`call_id`) REFER `yb-manager/customer';
 
 -- ----------------------------
@@ -128,8 +128,8 @@ CREATE TABLE `gprsdetails` (
   PRIMARY KEY  (`gprs_id`),
   KEY `cu_id` (`cu_id`),
   KEY `name3` (`name`),
-  CONSTRAINT `name3` FOREIGN KEY (`name`) REFERENCES `customer` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `cu_id` FOREIGN KEY (`cu_id`) REFERENCES `customer` (`cust_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `cu_id` FOREIGN KEY (`cu_id`) REFERENCES `customer` (`cust_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `name3` FOREIGN KEY (`name`) REFERENCES `customer` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -139,6 +139,8 @@ INSERT INTO `gprsdetails` VALUES ('3', '2017-03-14 10:20:14', '100', '3', '杨�
 INSERT INTO `gprsdetails` VALUES ('4', '2017-03-15 15:55:43', '312', '2', 'shabi');
 INSERT INTO `gprsdetails` VALUES ('5', '2017-03-15 15:56:02', '323', '5', '范冰冰');
 INSERT INTO `gprsdetails` VALUES ('6', '2017-03-15 22:29:02', '1233', '5', '范冰冰');
+INSERT INTO `gprsdetails` VALUES ('7', '2017-03-15 11:21:07', '323', '3', '杨波');
+INSERT INTO `gprsdetails` VALUES ('8', '2017-03-22 11:21:22', '4231', '3', '杨波');
 
 -- ----------------------------
 -- Table structure for messagedetails
@@ -154,8 +156,8 @@ CREATE TABLE `messagedetails` (
   PRIMARY KEY  (`mess_id`),
   KEY `cus_id` (`cus_id`),
   KEY `name2` (`name`),
-  CONSTRAINT `name2` FOREIGN KEY (`name`) REFERENCES `customer` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `cus_id` FOREIGN KEY (`cus_id`) REFERENCES `customer` (`cust_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `cus_id` FOREIGN KEY (`cus_id`) REFERENCES `customer` (`cust_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `name2` FOREIGN KEY (`name`) REFERENCES `customer` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -164,6 +166,9 @@ CREATE TABLE `messagedetails` (
 INSERT INTO `messagedetails` VALUES ('3', '2017-03-23 10:19:14', '2', '0.2', '3', '杨波');
 INSERT INTO `messagedetails` VALUES ('4', '2017-03-14 15:54:20', '13', '1.3', '4', '杨幂');
 INSERT INTO `messagedetails` VALUES ('5', '2017-03-09 15:55:18', '1', '0.1', '6', '吉泽');
+INSERT INTO `messagedetails` VALUES ('6', '2017-03-15 12:48:12', '3', '0.3', '3', '杨波');
+INSERT INTO `messagedetails` VALUES ('7', '2017-03-22 12:48:31', '1', '0.1', '3', '杨波');
+INSERT INTO `messagedetails` VALUES ('8', '2017-03-25 12:48:46', '2', '0.2', '3', '杨波');
 
 -- ----------------------------
 -- Table structure for postage

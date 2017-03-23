@@ -10,6 +10,7 @@ com\yb\pojo\GprsdetailsExample$Criterion.class
 com\yb\pojo\CalldetailsExample.class
 com\yb\pojo\CustomerExample$GeneratedCriteria.class
 com\yb\pojo\PostageExample$GeneratedCriteria.class
+com\yb\controller\UserController.class
 com\yb\pojo\CalldetailsExample$GeneratedCriteria.class
 com\yb\pojo\AdminExample.class
 com\yb\pojo\Customer.class
@@ -17,6 +18,7 @@ com\yb\pojo\CustomerExample$Criterion.class
 com\yb\pojo\Messagedetails.class
 com\yb\pojo\CustomerExample$Criteria.class
 com\yb\service\impl\AdminServiceImpl.class
+com\yb\service\UserService.class
 com\yb\pojo\GprsdetailsExample$Criteria.class
 com\yb\pojo\GprsdetailsExample$GeneratedCriteria.class
 com\yb\service\AdminService.class
@@ -35,6 +37,7 @@ com\yb\pojo\CalldetailsExample$Criterion.class
 com\yb\dao\CustomerMapper.class
 com\yb\pojo\CalldetailsExample$Criteria.class
 com\yb\dao\BalanceMapper.class
+com\yb\service\impl\UserServiceImpl.class
 com\yb\pojo\Gprsdetails.class
 com\yb\pojo\BalanceExample.class
 com\yb\pojo\PostageExample$Criterion.class
