@@ -5,9 +5,9 @@ public class Postage {
 
     private String type;
 
-    private String callprice;
+    private Float callprice;
 
-    private String messageprice;
+    private Float messageprice;
 
     private Float rent;
 
@@ -27,20 +27,20 @@ public class Postage {
         this.type = type == null ? null : type.trim();
     }
 
-    public String getCallprice() {
+    public Float getCallprice() {
         return callprice;
     }
 
-    public void setCallprice(String callprice) {
-        this.callprice = callprice == null ? null : callprice.trim();
+    public void setCallprice(Float callprice) {
+        this.callprice = callprice ;
     }
 
-    public String getMessageprice() {
+    public Float getMessageprice() {
         return messageprice;
     }
 
-    public void setMessageprice(String messageprice) {
-        this.messageprice = messageprice == null ? null : messageprice.trim();
+    public void setMessageprice(Float messageprice) {
+        this.messageprice = messageprice ;
     }
 
     public Float getRent() {

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.dao.MypostageMapper" >
+  <resultMap id="BaseResultMap" type="com.yb.pojo.Mypostage" >
+    <id column="mpid" property="mpid" jdbcType="INTEGER" />
+    <result column="c_id" property="cId" jdbcType="INTEGER" />
+    <result column="c_name" property="cName" jdbcType="VARCHAR" />
+    <result column="p_id" property="pId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="callprice" property="callprice" jdbcType="REAL" />
+    <result column="messageprice" property="messageprice" jdbcType="REAL" />
+    <result column="rent" property="rent" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mpid, c_id, c_name, p_id, type, callprice, messageprice, rent
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yb.pojo.MypostageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mypostage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mypostage
+    where mpid = #{mpid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mypostage
+    where mpid = #{mpid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yb.pojo.MypostageExample" >
+    delete from mypostage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yb.pojo.Mypostage" >
+    insert into mypostage (mpid, c_id, c_name, 
+      p_id, type, callprice, 
+      messageprice, rent)
+    values (#{mpid,jdbcType=INTEGER}, #{cId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, 
+      #{pId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{callprice,jdbcType=REAL}, 
+      #{messageprice,jdbcType=REAL}, #{rent,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yb.pojo.Mypostage" >
+    insert into mypostage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mpid != null" >
+        mpid,
+      </if>
+      <if test="cId != null" >
+        c_id,
+      </if>
+      <if test="cName != null" >
+        c_name,
+      </if>
+      <if test="pId != null" >
+        p_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="callprice != null" >
+        callprice,
+      </if>
+      <if test="messageprice != null" >
+        messageprice,
+      </if>
+      <if test="rent != null" >
+        rent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mpid != null" >
+        #{mpid,jdbcType=INTEGER},
+      </if>
+      <if test="cId != null" >
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null" >
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="callprice != null" >
+        #{callprice,jdbcType=REAL},
+      </if>
+      <if test="messageprice != null" >
+        #{messageprice,jdbcType=REAL},
+      </if>
+      <if test="rent != null" >
+        #{rent,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yb.pojo.MypostageExample" resultType="java.lang.Integer" >
+    select count(*) from mypostage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update mypostage
+    <set >
+      <if test="record.mpid != null" >
+        mpid = #{record.mpid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cId != null" >
+        c_id = #{record.cId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cName != null" >
+        c_name = #{record.cName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pId != null" >
+        p_id = #{record.pId,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.callprice != null" >
+        callprice = #{record.callprice,jdbcType=REAL},
+      </if>
+      <if test="record.messageprice != null" >
+        messageprice = #{record.messageprice,jdbcType=REAL},
+      </if>
+      <if test="record.rent != null" >
+        rent = #{record.rent,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update mypostage
+    set mpid = #{record.mpid,jdbcType=INTEGER},
+      c_id = #{record.cId,jdbcType=INTEGER},
+      c_name = #{record.cName,jdbcType=VARCHAR},
+      p_id = #{record.pId,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=VARCHAR},
+      callprice = #{record.callprice,jdbcType=REAL},
+      messageprice = #{record.messageprice,jdbcType=REAL},
+      rent = #{record.rent,jdbcType=REAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yb.pojo.Mypostage" >
+    update mypostage
+    <set >
+      <if test="cId != null" >
+        c_id = #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null" >
+        c_name = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null" >
+        p_id = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="callprice != null" >
+        callprice = #{callprice,jdbcType=REAL},
+      </if>
+      <if test="messageprice != null" >
+        messageprice = #{messageprice,jdbcType=REAL},
+      </if>
+      <if test="rent != null" >
+        rent = #{rent,jdbcType=REAL},
+      </if>
+    </set>
+    where mpid = #{mpid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yb.pojo.Mypostage" >
+    update mypostage
+    set c_id = #{cId,jdbcType=INTEGER},
+      c_name = #{cName,jdbcType=VARCHAR},
+      p_id = #{pId,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      callprice = #{callprice,jdbcType=REAL},
+      messageprice = #{messageprice,jdbcType=REAL},
+      rent = #{rent,jdbcType=REAL}
+    where mpid = #{mpid,jdbcType=INTEGER}
+  </update>
+</mapper>

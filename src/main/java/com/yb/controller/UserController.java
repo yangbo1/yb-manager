@@ -59,4 +59,36 @@ public class UserController {
         model.addAttribute("myBalance",balance);
         return "addBalance";
     }
+    @RequestMapping("/call-view")
+    public String callview(@RequestParam("id") Integer id, ModelMap model){
+        model.addAttribute("id",id);
+        return "call";
+    }
+    @RequestMapping("/myPostage")
+    public String getMyPostageById(@RequestParam("id") Integer id, ModelMap model){
+        Mypostage mypostage = userService.getMyPostageById(id);
+        model.addAttribute("mypostage",mypostage);
+        return "myPostage";
+    }
+    @RequestMapping("/updateMyPostage")
+    public String updatePostage(@RequestParam("id") Integer id, ModelMap model){
+        Mypostage mypostage = userService.getMyPostageById(id);
+        List<Postage> list = userService.getPostageList();
+        model.addAttribute("list",list);
+        model.addAttribute("mypostage",mypostage);
+        return "updateMyPostage";
+    }
+
+    @RequestMapping("/saveMyPost")
+    public String saveMyPost(Integer mpid,String type,ModelMap model){
+        Mypostage mypostage = userService.saveMyPost(mpid, type);
+        model.addAttribute("mypostage",mypostage);
+        return "myPostage";
+    }
+    @RequestMapping("/called")
+    public String called(Integer id, String time, ModelMap medel){
+        List<Calldetails> list = userService.called(id, time);
+        medel.addAttribute("list",list);
+        return "myCall";
+    }
 }

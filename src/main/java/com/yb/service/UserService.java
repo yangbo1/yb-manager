@@ -19,4 +19,12 @@ public interface UserService {
     Balance getMyBalanceById(Integer id);
 
     Balance addMoney(float addmoney, Integer baId);
+
+    Mypostage getMyPostageById(Integer id);
+
+    List<Postage> getPostageList();
+
+    Mypostage saveMyPost(Integer mpid, String type);
+
+    List<Calldetails> called(Integer id, String time);
 }

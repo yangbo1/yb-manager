@@ -11,5 +11,6 @@
         <mapper resource="mapper/GprsdetailsMapper.xml"/>
         <mapper resource="mapper/MessagedetailsMapper.xml"/>
         <mapper resource="mapper/PostageMapper.xml"/>
+        <mapper resource="mapper/MypostageMapper.xml"/>
     </mappers>
 </configuration>

@@ -32,6 +32,7 @@
             <li><a href="listMessage">信息详单</a></li>
             <li><a href="addCustomer">添加客户</a></li>
             <li><a href="listPostage">资费详情</a></li>
+            <li>欢迎你：管理员<a href="index.jsp">退出</a></li>
         </ul>
     </div>
     <!--/.navbar-collapse -->

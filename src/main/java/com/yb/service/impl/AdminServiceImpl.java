@@ -25,6 +25,8 @@ public class AdminServiceImpl implements AdminService {
     private BalanceMapper balanceMapper;
     @Autowired
     private PostageMapper postageMapper;
+    @Autowired
+    private MypostageMapper mypostageMapper;
 
     @Override
     public List<Customer> getCustomerList() {
@@ -115,13 +117,22 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void insertCustomer(Customer customer) {
+        //添加用户，并select last_insert_id()
         customerMapper.insertSelective(customer);
+
+        //想balance表添加信息，账户余额为零
         Balance balance = new Balance();
         balance.setName(customer.getUsername());
         balance.setcId(customer.getCustId());
-        balance.setMoney((float)0);
-        balance.setGprs((long)0);
+        balance.setMoney((float)50);
+        balance.setGprs((long)1000);
         balanceMapper.insertSelective(balance);
+
+        //像个人套餐表中添加数据，套餐为空
+        Mypostage mypostage = new Mypostage();
+        mypostage.setcId(customer.getCustId());
+        mypostage.setcName(customer.getUsername());
+        mypostageMapper.insertSelective(mypostage);
 
     }
 

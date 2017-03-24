@@ -13,8 +13,10 @@ E:\idea\taotao\yb-manager\src\main\java\com\yb\pojo\Customer.java
 E:\idea\taotao\yb-manager\src\main\java\com\yb\pojo\GprsdetailsExample.java
 E:\idea\taotao\yb-manager\src\main\java\com\yb\pojo\PostageExample.java
 E:\idea\taotao\yb-manager\src\main\java\com\yb\dao\PostageMapper.java
+E:\idea\taotao\yb-manager\src\main\java\com\yb\dao\MypostageMapper.java
 E:\idea\taotao\yb-manager\src\main\java\com\yb\pojo\Balance.java
 E:\idea\taotao\yb-manager\src\main\java\com\yb\pojo\AdminExample.java
+E:\idea\taotao\yb-manager\src\main\java\com\yb\pojo\MypostageExample.java
 E:\idea\taotao\yb-manager\src\main\java\com\yb\pojo\Calldetails.java
 E:\idea\taotao\yb-manager\src\main\java\com\yb\controller\AdminController.java
 E:\idea\taotao\yb-manager\src\main\java\com\yb\dao\CustomerMapper.java
@@ -26,5 +28,6 @@ E:\idea\taotao\yb-manager\src\main\java\com\yb\pojo\Gprsdetails.java
 E:\idea\taotao\yb-manager\src\main\java\com\yb\service\UserService.java
 E:\idea\taotao\yb-manager\src\main\java\com\yb\pojo\BalanceExample.java
 E:\idea\taotao\yb-manager\src\main\java\com\yb\pojo\Messagedetails.java
+E:\idea\taotao\yb-manager\src\main\java\com\yb\pojo\Mypostage.java
 E:\idea\taotao\yb-manager\src\main\java\com\yb\dao\AdminMapper.java
 E:\idea\taotao\yb-manager\src\main\java\com\yb\pojo\CustomerExample.java
