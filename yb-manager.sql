@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2017-03-24 23:58:36
+Date: 2017-03-25 12:27:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,7 +52,7 @@ CREATE TABLE `balance` (
 -- ----------------------------
 -- Records of balance
 -- ----------------------------
-INSERT INTO `balance` VALUES ('3', '614.3', '3000', '3', '杨波');
+INSERT INTO `balance` VALUES ('3', '601.9', '3000', '3', '杨波');
 INSERT INTO `balance` VALUES ('5', '480.0', '3213', '5', '范冰冰');
 INSERT INTO `balance` VALUES ('11', '9889.8', '1000', '11', '波多');
 INSERT INTO `balance` VALUES ('12', '109.0', '213', '12', '杨幂');
@@ -64,6 +64,7 @@ INSERT INTO `balance` VALUES ('17', '332.5', '0', '17', '陈冠希');
 INSERT INTO `balance` VALUES ('18', '308.8', '0', '18', '张柏芝');
 INSERT INTO `balance` VALUES ('19', '3210.6', '0', '19', 'Angelababy');
 INSERT INTO `balance` VALUES ('20', '122.0', '0', '20', '刘诗诗');
+INSERT INTO `balance` VALUES ('22', '34.4', '1000', '22', '詹姆斯');
 
 -- ----------------------------
 -- Table structure for calldetails
@@ -97,7 +98,6 @@ INSERT INTO `calldetails` VALUES ('11', '2017-03-24 22:35:23', '6', '1.8', '3', 
 INSERT INTO `calldetails` VALUES ('12', '2017-03-24 22:54:50', '1', '0.5', '12', '杨幂');
 INSERT INTO `calldetails` VALUES ('13', '2017-03-24 22:54:55', '1', '0.5', '12', '杨幂');
 INSERT INTO `calldetails` VALUES ('14', '2017-03-24 22:55:02', '2', '1.0', '12', '杨幂');
-INSERT INTO `calldetails` VALUES ('15', '2017-03-24 22:57:39', '1', '0.1', '16', '阿娇');
 INSERT INTO `calldetails` VALUES ('16', '2017-03-24 23:36:09', '1', '0.8', '13', '大木');
 INSERT INTO `calldetails` VALUES ('17', '2017-03-24 23:36:17', '2', '1.6', '13', '大木');
 INSERT INTO `calldetails` VALUES ('18', '2017-03-24 23:36:21', '1', '0.8', '13', '大木');
@@ -138,6 +138,7 @@ INSERT INTO `calldetails` VALUES ('52', '2017-03-24 23:57:17', '10', '8.0', '11'
 INSERT INTO `calldetails` VALUES ('53', '2017-03-24 23:57:28', '14', '11.2', '11', '波多');
 INSERT INTO `calldetails` VALUES ('54', '2017-03-24 23:57:44', '5', '4.0', '11', '波多');
 INSERT INTO `calldetails` VALUES ('55', '2017-03-24 23:57:54', '3', '2.4', '11', '波多');
+INSERT INTO `calldetails` VALUES ('59', '2017-03-25 12:25:33', '3', '2.4', '22', '詹姆斯');
 
 -- ----------------------------
 -- Table structure for customer
@@ -167,6 +168,7 @@ INSERT INTO `customer` VALUES ('17', '陈冠希', '123', '21312312312');
 INSERT INTO `customer` VALUES ('18', '张柏芝', '123', '213123123');
 INSERT INTO `customer` VALUES ('19', 'Angelababy', '123', '2312312312');
 INSERT INTO `customer` VALUES ('20', '刘诗诗', '123', '2312312312');
+INSERT INTO `customer` VALUES ('22', '詹姆斯', '123', '321312312');
 
 -- ----------------------------
 -- Table structure for gprsdetails
@@ -421,6 +423,11 @@ INSERT INTO `messagedetails` VALUES ('126', '2020-02-25 22:55:43', '12', '1.2', 
 INSERT INTO `messagedetails` VALUES ('127', '2020-01-25 22:51:46', '22', '2.2', '20', '刘诗诗');
 INSERT INTO `messagedetails` VALUES ('128', '2020-02-25 22:51:44', '4', '0.4', '20', '刘诗诗');
 INSERT INTO `messagedetails` VALUES ('129', '2020-03-25 22:51:43', '1', '0.1', '20', '刘诗诗');
+INSERT INTO `messagedetails` VALUES ('130', '2017-03-25 11:38:49', '123', '12.3', '3', '杨波');
+INSERT INTO `messagedetails` VALUES ('131', '2017-03-25 11:39:07', '1', '0.1', '3', '杨波');
+INSERT INTO `messagedetails` VALUES ('134', '2017-03-25 12:25:38', '22', '2.2', '22', '詹姆斯');
+INSERT INTO `messagedetails` VALUES ('135', '2017-03-25 12:26:26', '11', '2.2', '22', '詹姆斯');
+INSERT INTO `messagedetails` VALUES ('136', '2017-03-25 12:26:41', '11', '8.8', '22', '詹姆斯');
 
 -- ----------------------------
 -- Table structure for mypostage
@@ -437,36 +444,37 @@ CREATE TABLE `mypostage` (
   `rent` float(10,1) default NULL,
   PRIMARY KEY  (`mpid`),
   KEY `custo_id` (`c_id`),
-  KEY `c_name` (`c_name`),
   KEY `p_id` (`p_id`),
-  KEY `p_type` (`type`),
-  KEY `p_callprice` (`callprice`),
   KEY `p_messageprice` (`messageprice`),
+  KEY `c_name` (`c_name`),
+  KEY `p_callprice` (`callprice`),
   KEY `p_rent` (`rent`),
-  CONSTRAINT `p_rent` FOREIGN KEY (`rent`) REFERENCES `postage` (`rent`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  KEY `p_type` (`type`),
+  CONSTRAINT `p_type` FOREIGN KEY (`type`) REFERENCES `postage` (`type`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `custo_id` FOREIGN KEY (`c_id`) REFERENCES `customer` (`cust_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `c_name` FOREIGN KEY (`c_name`) REFERENCES `customer` (`username`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `p_callprice` FOREIGN KEY (`callprice`) REFERENCES `postage` (`callprice`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `p_id` FOREIGN KEY (`p_id`) REFERENCES `postage` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `p_messageprice` FOREIGN KEY (`messageprice`) REFERENCES `postage` (`messageprice`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `p_type` FOREIGN KEY (`type`) REFERENCES `postage` (`type`) ON DELETE NO ACTION ON UPDATE CASCADE
+  CONSTRAINT `p_rent` FOREIGN KEY (`rent`) REFERENCES `postage` (`rent`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mypostage
 -- ----------------------------
-INSERT INTO `mypostage` VALUES ('1', '3', '杨波', '3', '动感地带', '0.3', '0.1', '28.0');
-INSERT INTO `mypostage` VALUES ('2', '5', '范冰冰', '4', '全球通', '0.2', '0.1', '50.0');
-INSERT INTO `mypostage` VALUES ('3', '11', '波多', '7', '天翼校园', '0.8', '0.1', '100.0');
-INSERT INTO `mypostage` VALUES ('4', '12', '杨幂', '6', '流量大王', '0.5', '0.1', '40.0');
-INSERT INTO `mypostage` VALUES ('5', '13', '大木', '7', '天翼校园', '0.8', '0.1', '100.0');
-INSERT INTO `mypostage` VALUES ('6', '14', '吉泽', '5', '沃派校园', '0.1', '0.1', '20.0');
-INSERT INTO `mypostage` VALUES ('7', '15', '舒淇', '3', '动感地带', '0.3', '0.1', '28.0');
-INSERT INTO `mypostage` VALUES ('8', '16', '阿娇', '5', '沃派校园', '0.1', '0.1', '20.0');
-INSERT INTO `mypostage` VALUES ('9', '17', '陈冠希', '5', '沃派校园', '0.1', '0.1', '20.0');
-INSERT INTO `mypostage` VALUES ('10', '18', '张柏芝', '7', '天翼校园', '0.8', '0.1', '100.0');
-INSERT INTO `mypostage` VALUES ('11', '19', 'Angelababy', '2', '神州行', '0.4', '0.1', '30.0');
-INSERT INTO `mypostage` VALUES ('12', '20', '刘诗诗', '4', '全球通', '0.2', '0.1', '50.0');
+INSERT INTO `mypostage` VALUES ('1', '3', '杨波', '3', '动感地带', '0.3', '0.2', '28.0');
+INSERT INTO `mypostage` VALUES ('2', '5', '范冰冰', '4', '全球通啊', '0.2', '0.3', '50.0');
+INSERT INTO `mypostage` VALUES ('3', '11', '波多', '7', '天翼校园', '0.8', '0.1', '120.0');
+INSERT INTO `mypostage` VALUES ('4', '12', '杨幂', '6', '流量大王', '0.5', '0.5', '40.0');
+INSERT INTO `mypostage` VALUES ('5', '13', '大木', '7', '天翼校园', '0.8', '0.1', '120.0');
+INSERT INTO `mypostage` VALUES ('6', '14', '吉泽', '5', '沃派校园', '0.1', '0.4', '20.0');
+INSERT INTO `mypostage` VALUES ('7', '15', '舒淇', '3', '动感地带', '0.3', '0.2', '28.0');
+INSERT INTO `mypostage` VALUES ('8', '16', '阿娇', '5', '沃派校园', '0.1', '0.4', '20.0');
+INSERT INTO `mypostage` VALUES ('9', '17', '陈冠希', '5', '沃派校园', '0.1', '0.4', '20.0');
+INSERT INTO `mypostage` VALUES ('10', '18', '张柏芝', '7', '天翼校园', '0.8', '0.1', '120.0');
+INSERT INTO `mypostage` VALUES ('11', '19', 'Angelababy', '2', '神州行', '0.4', '0.8', '30.0');
+INSERT INTO `mypostage` VALUES ('12', '20', '刘诗诗', '4', '全球通啊', '0.2', '0.3', '50.0');
+INSERT INTO `mypostage` VALUES ('14', '22', '詹姆斯', '2', '神州行', '0.4', '0.8', '30.0');
 
 -- ----------------------------
 -- Table structure for postage
@@ -488,9 +496,9 @@ CREATE TABLE `postage` (
 -- ----------------------------
 -- Records of postage
 -- ----------------------------
-INSERT INTO `postage` VALUES ('2', '神州行', '0.4', '0.1', '30.0');
-INSERT INTO `postage` VALUES ('3', '动感地带', '0.3', '0.1', '28.0');
-INSERT INTO `postage` VALUES ('4', '全球通', '0.2', '0.1', '50.0');
-INSERT INTO `postage` VALUES ('5', '沃派校园', '0.1', '0.1', '20.0');
-INSERT INTO `postage` VALUES ('6', '流量大王', '0.5', '0.1', '40.0');
-INSERT INTO `postage` VALUES ('7', '天翼校园', '0.8', '0.1', '100.0');
+INSERT INTO `postage` VALUES ('2', '神州行', '0.4', '0.8', '30.0');
+INSERT INTO `postage` VALUES ('3', '动感地带', '0.3', '0.2', '28.0');
+INSERT INTO `postage` VALUES ('4', '全球通啊', '0.2', '0.3', '50.0');
+INSERT INTO `postage` VALUES ('5', '沃派校园', '0.1', '0.4', '20.0');
+INSERT INTO `postage` VALUES ('6', '流量大王', '0.5', '0.5', '40.0');
+INSERT INTO `postage` VALUES ('7', '天翼校园', '0.8', '0.1', '120.0');
