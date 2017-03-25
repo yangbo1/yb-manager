@@ -44,6 +44,7 @@
                     <li><a href="javascript:location='${yb}/myPostage?id=<%=id%>'">我的套餐</a></li>
                     <li><a href="javascript:location='${yb}/updateMyPostage?id=<%=id%>'">套餐变更</a></li>
                     <li><a href="javascript:location='${yb}/call-view?id=<%=id%>'">模拟通话</a></li>
+                    <li><a href="javascript:location='${yb}/message-view?id=<%=id%>'">模拟短信</a></li>
                     <li>欢迎你：<%=name%><a href="index.jsp">退出</a></li>
                 </ul>
             </div>

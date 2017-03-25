@@ -171,4 +171,43 @@ public class UserServiceImpl implements UserService {
         return  calldetailsMapper.selectByExample(example2);
 
     }
+
+    @Override
+    public List<Messagedetails> messaged(Integer id, Integer quanties) {
+        //根据用户id查询个人套餐，获取短信的价格
+        MypostageExample example = new MypostageExample();
+        MypostageExample.Criteria criteria = example.createCriteria();
+        criteria.andCIdEqualTo(id);
+        List<Mypostage> list = mypostageMapper.selectByExample(example);
+        Mypostage mypostage = list.get(0);
+        float price = mypostage.getMessageprice();
+
+        float money = price*quanties;
+
+        //根据id获取个人余额
+        BalanceExample example1 = new BalanceExample();
+        BalanceExample.Criteria criteria1 = example1.createCriteria();
+        criteria1.andCIdEqualTo(id);
+        List<Balance> list1 = balanceMapper.selectByExample(example1);
+        Balance balance = list1.get(0);
+        //根新个人余额
+        balance.setMoney(balance.getMoney()-money);
+        balanceMapper.updateByPrimaryKey(balance);
+
+        //生成短信记录
+        Messagedetails messagedetails = new Messagedetails();
+        messagedetails.setCreatetime(new Date());
+        messagedetails.setQuantities(quanties);
+        messagedetails.setCost(money);
+        messagedetails.setCusId(id);
+        messagedetails.setName(balance.getName());
+        messagedetailsMapper.insert(messagedetails);
+
+        //查询短信记录返回
+        MessagedetailsExample example2 = new MessagedetailsExample();
+        MessagedetailsExample.Criteria criteria2 = example2.createCriteria();
+        criteria2.andCusIdEqualTo(id);
+        return messagedetailsMapper.selectByExample(example2);
+
+    }
 }

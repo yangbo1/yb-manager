@@ -64,6 +64,14 @@ public class UserController {
         model.addAttribute("id",id);
         return "call";
     }
+    @RequestMapping("/message-view")
+    public String messageview(@RequestParam("id") Integer id, ModelMap model){
+        model.addAttribute("id",id);
+        return "message";
+    }
+
+
+
     @RequestMapping("/myPostage")
     public String getMyPostageById(@RequestParam("id") Integer id, ModelMap model){
         Mypostage mypostage = userService.getMyPostageById(id);
@@ -90,5 +98,12 @@ public class UserController {
         List<Calldetails> list = userService.called(id, time);
         medel.addAttribute("list",list);
         return "myCall";
+    }
+
+    @RequestMapping("/messaged")
+    public String messaged(Integer id, Integer quanties, ModelMap model){
+        List<Messagedetails> list = userService.messaged(id,quanties);
+        model.addAttribute("list",list);
+        return "myMessage";
     }
 }

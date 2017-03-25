@@ -27,4 +27,6 @@ public interface UserService {
     Mypostage saveMyPost(Integer mpid, String type);
 
     List<Calldetails> called(Integer id, String time);
+
+    List<Messagedetails> messaged(Integer id, Integer quanties);
 }
